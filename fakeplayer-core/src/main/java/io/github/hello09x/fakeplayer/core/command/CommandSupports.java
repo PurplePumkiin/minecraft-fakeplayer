@@ -187,11 +187,17 @@ public abstract class CommandSupports {
     }
 
     public static boolean needSelect(@NotNull CommandSender sender) {
-        return sender.isOp() || (config.getPlayerLimit() > 1 && manager.countByCreator(sender) > 0);
+        if (sender != null) {
+            return sender.isOp() || (config.getPlayerLimit() > 1 && manager.countByCreator(sender) > 0);
+        }
+        return false;
     }
 
     public static boolean hasFakeplayer(@NotNull CommandSender sender) {
-        return sender.isOp() || manager.countByCreator(sender) > 0;
+        if (sender != null) {
+            return sender.isOp() || manager.countByCreator(sender) > 0;
+        }
+        return false;
     }
 
     public static boolean isCmdAvailable(@NotNull CommandSender sender) {
